@@ -4,4 +4,4 @@ Celem mojego projektu będzie stworzenie aplikacji pracującej z dźwiękiem. G�
 Program będzie miał interfejs graficzny odpowiedni dla powyższych założeń. Dodatkowo planuję dodać jakieś tryby np. poprawiające szybkość.
 
 ## Technologie:
-ProjektProjektProjekt planuje wykonać używając języka PythonPython i jego bibliotek.
+Projekt planuje wykonać używając języka Python i jego bibliotek.
