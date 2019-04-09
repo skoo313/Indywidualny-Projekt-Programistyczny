@@ -2,6 +2,7 @@ import aubio
 import pyaudio
 import music21 
 import numpy as np
+import Queue as queue
 
 pyau = pyaudio.PyAudio()
 
@@ -17,7 +18,10 @@ pDetection = aubio.pitch("default", 2048, 2048//2, 44100)
 pDetection.set_unit("Hz")
 pDetection.set_silence(-40)
 
-def get_note(volume_thresh):
+#do wymiany danych z innymi skryptami
+q = queue.Queue()
+
+def get_note(volume_thresh=0.001):
 
     current_pitch = music21.pitch.Pitch()
 
@@ -29,12 +33,14 @@ def get_note(volume_thresh):
         pitch = pDetection(samples)[0]
 
         # Compute the energy (volume)
-        volume = np.sum(samples)/len(samples) * 100
+        volume = np.sum(samples**2)/len(samples) * 100
 
         if pitch and volume > volume_thresh:  # adjust with your mic!
             current_pitch.frequency = pitch
         else:
             continue
+
+	q.put({'Note': current_pitch.nameWithOctave, 'Cents': current_pitch.microtone.cents})
 
         print("Name: {}".format(current_pitch.nameWithOctave))
 	print("Frequency: {}".format(current_pitch.frequency))
