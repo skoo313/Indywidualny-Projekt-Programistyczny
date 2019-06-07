@@ -26,8 +26,6 @@ t.daemon = True
 t.start()
 
 clr=0
-running= True
-active=""
 sound = None
 
 def playScale(a):
@@ -49,10 +47,7 @@ def playScale(a):
 
     w.pack()
 
-       
-
-    target=[]
-    
+    target=[]    
     num_sound=0    
 
     for l in dzwieki:
@@ -63,27 +58,17 @@ def playScale(a):
 	w.pack(fill=tk.X)
 
     target.pop()	
-
-    xd=False
     
     print(target)
     print(num_sound)
+    
     i=0
     time.sleep(1)
+    
     while True:
            
 	    if clr==1:
 		break
-
-	    
-		
-	    #print("---"+str(i))
-	    #i=i+1
-	   
-	   
-	   
-	    #print("i={}".format(i))
-	    #print("num={}".format(num_sound-1))
 
 	    if i >= (num_sound-1):
                 num_sound=0    
@@ -106,6 +91,7 @@ def playScale(a):
     
 	        w.pack()
 		j=0
+		
 		for l in dzwieki:
 			
 			w = tk.Label(right, text=l)
@@ -116,11 +102,7 @@ def playScale(a):
 			w.pack(fill=tk.X)
 			j=j+1
 	    sound=""
-	   	
-	 
-	    right.update()
-
-	    #time.sleep(.25)	
+	    right.update()	
     return None	
 
 def get_sound():
@@ -157,7 +139,6 @@ def openlink(i):
 	clr=0
         eval(i)
 
-
 def tuner_main():
 	pygame.init()
 	pygame.display.set_caption('Guitar Tuner')
@@ -175,8 +156,6 @@ def tuner_main():
 	t = Thread(target=get_note)
 	t.daemon = True
 	t.start()
-
-	
 
 	while running:
 	    for event in pygame.event.get():
